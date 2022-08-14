@@ -7,6 +7,10 @@ import 'package:flutter/material.dart';
 void main() => runApp(BasicApp());
 
 class BasicApp extends StatelessWidget {
+  void answerQuestion() {
+    print("Option is chosen!");
+  }
+
   @override
   Widget build(BuildContext context) {
     List<String> questions = [
@@ -22,15 +26,15 @@ class BasicApp extends StatelessWidget {
           children: [
             Text('Question!'),
             ElevatedButton(
-              onPressed: null,
+              onPressed: answerQuestion,
               child: Text("Answer 1"),
             ),
             ElevatedButton(
-              onPressed: null,
+              onPressed: answerQuestion,
               child: Text("Answer 2"),
             ),
             ElevatedButton(
-              onPressed: null,
+              onPressed: answerQuestion,
               child: Text("Answer 3"),
             ),
           ],
