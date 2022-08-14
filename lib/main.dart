@@ -6,8 +6,23 @@ import 'package:flutter/material.dart';
 
 void main() => runApp(BasicApp());
 
-class BasicApp extends StatelessWidget {
+class BasicApp extends StatefulWidget {
+  const BasicApp({Key? key}) : super(key: key);
+
+  @override
+  State<StatefulWidget> createState() {
+    return BasicAppState();
+  }
+}
+
+class BasicAppState extends State<BasicApp> {
+  var questionIndex = 0;
   void answerQuestion() {
+    setState(() {
+      questionIndex += 1;
+    });
+
+    print("# question index: $questionIndex");
     print("Option is chosen!");
   }
 
@@ -24,7 +39,7 @@ class BasicApp extends StatelessWidget {
         ),
         body: Column(
           children: [
-            Text('Question!'),
+            Text(questions[questionIndex]),
             ElevatedButton(
               onPressed: answerQuestion,
               child: Text("Answer 1"),
