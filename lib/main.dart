@@ -30,11 +30,14 @@ class BasicApp extends StatelessWidget {
               child: Text("Answer 1"),
             ),
             ElevatedButton(
-              onPressed: answerQuestion,
+              onPressed: () => print("Answer 2 is chosen!"),
               child: Text("Answer 2"),
             ),
             ElevatedButton(
-              onPressed: answerQuestion,
+              onPressed: () {
+                //....
+                print("Answer 3 is chosen!");
+              },
               child: Text("Answer 3"),
             ),
           ],
