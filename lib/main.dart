@@ -11,18 +11,18 @@ class BasicApp extends StatefulWidget {
 
   @override
   State<StatefulWidget> createState() {
-    return BasicAppState();
+    return _BasicAppState();
   }
 }
 
-class BasicAppState extends State<BasicApp> {
-  var questionIndex = 0;
-  void answerQuestion() {
+class _BasicAppState extends State<BasicApp> {
+  var _questionIndex = 0;
+  void _answerQuestion() {
     setState(() {
-      questionIndex += 1;
+      _questionIndex += 1;
     });
 
-    print("# question index: $questionIndex");
+    print("# question index: $_questionIndex");
     print("Option is chosen!");
   }
 
@@ -39,9 +39,9 @@ class BasicAppState extends State<BasicApp> {
         ),
         body: Column(
           children: [
-            Text(questions[questionIndex]),
+            Text(questions[_questionIndex]),
             ElevatedButton(
-              onPressed: answerQuestion,
+              onPressed: _answerQuestion,
               child: Text("Answer 1"),
             ),
             ElevatedButton(
