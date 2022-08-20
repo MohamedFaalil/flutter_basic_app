@@ -18,6 +18,39 @@ class BasicApp extends StatefulWidget {
 }
 
 class _BasicAppState extends State<BasicApp> {
+  //here _questions variable can be initialized with a value only one time
+  // also its value can not be modified too due to const key
+  final _questions = const [
+    {
+      'questionText': "What's your favorite color?",
+      'answers': [
+        'Black',
+        'Red',
+        'Green',
+        'White',
+      ],
+    },
+    {
+      'questionText': "What's your favorite animal?",
+      'answers': [
+        'Cat',
+        'Horse',
+        'Tiger',
+        'Rabbit',
+        'Elephant',
+      ],
+    },
+    {
+      'questionText': "What's your favorite instructor?",
+      'answers': [
+        'Max',
+        'Mosh',
+        'Krish',
+        'Caleb',
+        'Navin',
+      ],
+    },
+  ];
   var _questionIndex = 0;
   void _answerQuestion() {
     setState(() {
@@ -27,37 +60,17 @@ class _BasicAppState extends State<BasicApp> {
 
   @override
   Widget build(BuildContext context) {
-    List<Map<String, dynamic>> questions = [
-      {
-        'questionText': "What's your favorite color?",
-        'answers': [
-          'Black',
-          'Red',
-          'Green',
-          'White',
-        ],
-      },
-      {
-        'questionText': "What's your favorite animal?",
-        'answers': [
-          'Cat',
-          'Horse',
-          'Tiger',
-          'Rabbit',
-          'Elephant',
-        ],
-      },
-      {
-        'questionText': "What's your favorite instructor?",
-        'answers': [
-          'Max',
-          'Mosh',
-          'Krish',
-          'Caleb',
-          'Navin',
-        ],
-      },
-    ];
+    //const is compile time constant, and final is run time constant
+    // variable questions can not be modified
+
+/*
+ Following operation can not be done:
+  01) numberText variable can be modified/changed by assigning new value
+    i.e numberText = ["one", "two"];
+  02) But its existing value can not be modified
+    // var numberText = const ['one'];
+    // numberText.add("Two");
+*/
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
@@ -65,8 +78,12 @@ class _BasicAppState extends State<BasicApp> {
         ),
         body: Column(
           children: [
-            Question(questionText: questions[_questionIndex]['questionText']),
-            ...(questions[_questionIndex]['answers'] as List).map((eachAnswer) {
+            Question(
+              questionText:
+                  (_questions[_questionIndex]['questionText'] as String),
+            ),
+            ...(_questions[_questionIndex]['answers'] as List)
+                .map((eachAnswer) {
               return Answer(_answerQuestion, eachAnswer);
             }).toList(),
           ],
