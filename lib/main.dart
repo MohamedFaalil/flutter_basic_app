@@ -76,18 +76,25 @@ class _BasicAppState extends State<BasicApp> {
         appBar: AppBar(
           title: const Text('This is my first app'),
         ),
-        body: Column(
-          children: [
-            Question(
-              questionText:
-                  (_questions[_questionIndex]['questionText'] as String),
-            ),
-            ...(_questions[_questionIndex]['answers'] as List)
-                .map((eachAnswer) {
-              return Answer(_answerQuestion, eachAnswer);
-            }).toList(),
-          ],
-        ),
+        body: _questions.length > _questionIndex
+            ? Column(
+                children: [
+                  Question(
+                    questionText:
+                        (_questions[_questionIndex]['questionText'] as String),
+                  ),
+                  ...(_questions[_questionIndex]['answers'] as List)
+                      .map((eachAnswer) {
+                    return Answer(_answerQuestion, eachAnswer);
+                  }).toList(),
+                ],
+              )
+            : const Center(
+                child: Text(
+                  "You did it!",
+                  style: TextStyle(fontSize: 35, color: Colors.blueAccent),
+                ),
+              ),
       ),
     );
   }
