@@ -1,12 +1,11 @@
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
-
 import 'package:flutter/material.dart';
 
 class Answer extends StatelessWidget {
   final Function selectHandler;
   final String answerText;
-  const Answer(this.selectHandler, this.answerText, {Key? key})
+  final double answerScore;
+  const Answer(this.selectHandler, this.answerText, this.answerScore,
+      {Key? key})
       : super(key: key);
 
   @override
@@ -15,7 +14,7 @@ class Answer extends StatelessWidget {
       width: double.infinity,
       child: ElevatedButton(
         onPressed: () {
-          selectHandler();
+          selectHandler(answerScore);
         },
         child: Text(answerText),
       ),

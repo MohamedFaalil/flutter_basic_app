@@ -1,12 +1,12 @@
+import 'package:basic_app/result.dart';
 import 'package:flutter/material.dart';
-import './question.dart';
-import './answer.dart';
+import './quiz.dart';
 
 // void main(List<String> args) {
 //   runApp(BasicApp());
 // }
 
-void main() => runApp(BasicApp());
+void main() => runApp(const BasicApp());
 
 class BasicApp extends StatefulWidget {
   const BasicApp({Key? key}) : super(key: key);
@@ -24,37 +24,88 @@ class _BasicAppState extends State<BasicApp> {
     {
       'questionText': "What's your favorite color?",
       'answers': [
-        'Black',
-        'Red',
-        'Green',
-        'White',
+        {
+          'text': 'Black',
+          'score': 13,
+        },
+        {
+          'text': 'Red',
+          'score': 27,
+        },
+        {
+          'text': 'Green',
+          'score': 35,
+        },
+        {
+          'text': 'White',
+          'score': 25,
+        },
       ],
     },
     {
       'questionText': "What's your favorite animal?",
       'answers': [
-        'Cat',
-        'Horse',
-        'Tiger',
-        'Rabbit',
-        'Elephant',
+        {
+          'text': 'Cat',
+          'score': 30,
+        },
+        {
+          'text': 'Horse',
+          'score': 20,
+        },
+        {
+          'text': 'Tiger',
+          'score': 10,
+        },
+        {
+          'text': 'Rabbit',
+          'score': 30,
+        },
+        {
+          'text': 'Elephant',
+          'score': 10,
+        },
       ],
     },
     {
       'questionText': "What's your favorite instructor?",
       'answers': [
-        'Max',
-        'Mosh',
-        'Krish',
-        'Caleb',
-        'Navin',
+        {
+          'text': 'Max',
+          'score': 25,
+        },
+        {
+          'text': 'Mosh',
+          'score': 25,
+        },
+        {
+          'text': 'Krish',
+          'score': 10,
+        },
+        {
+          'text': 'Caleb',
+          'score': 25,
+        },
+        {
+          'text': 'Navin',
+          'score': 15,
+        },
       ],
     },
   ];
   var _questionIndex = 0;
-  void _answerQuestion() {
+  double _totalScore = 0.0;
+  void _answerQuestion(double selected_answers_score) {
     setState(() {
       _questionIndex += 1;
+      _totalScore += selected_answers_score;
+    });
+  }
+
+  void _resetQuiz() {
+    setState(() {
+      _questionIndex = 0;
+      _totalScore = 0;
     });
   }
 
@@ -77,24 +128,8 @@ class _BasicAppState extends State<BasicApp> {
           title: const Text('This is my first app'),
         ),
         body: _questions.length > _questionIndex
-            ? Column(
-                children: [
-                  Question(
-                    questionText:
-                        (_questions[_questionIndex]['questionText'] as String),
-                  ),
-                  ...(_questions[_questionIndex]['answers'] as List)
-                      .map((eachAnswer) {
-                    return Answer(_answerQuestion, eachAnswer);
-                  }).toList(),
-                ],
-              )
-            : const Center(
-                child: Text(
-                  "You did it!",
-                  style: TextStyle(fontSize: 35, color: Colors.blueAccent),
-                ),
-              ),
+            ? Quiz(_questions, _questionIndex, _answerQuestion)
+            : Result(_totalScore, _resetQuiz),
       ),
     );
   }
