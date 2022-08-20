@@ -66,9 +66,9 @@ class _BasicAppState extends State<BasicApp> {
         body: Column(
           children: [
             Question(questionText: questions[_questionIndex]['questionText']),
-            Answer(_answerQuestion),
-            Answer(_answerQuestion),
-            Answer(_answerQuestion),
+            ...(questions[_questionIndex]['answers'] as List).map((eachAnswer) {
+              return Answer(_answerQuestion, eachAnswer);
+            }).toList(),
           ],
         ),
       ),
