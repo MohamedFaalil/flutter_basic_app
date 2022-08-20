@@ -23,16 +23,40 @@ class _BasicAppState extends State<BasicApp> {
     setState(() {
       _questionIndex += 1;
     });
-
-    print("# question index: $_questionIndex");
-    print("Option is chosen!");
   }
 
   @override
   Widget build(BuildContext context) {
-    List<String> questions = [
-      "What's your favorite color?",
-      "What's your favorite animal?",
+    List<Map<String, dynamic>> questions = [
+      {
+        'questionText': "What's your favorite color?",
+        'answers': [
+          'Black',
+          'Red',
+          'Green',
+          'White',
+        ],
+      },
+      {
+        'questionText': "What's your favorite animal?",
+        'answers': [
+          'Cat',
+          'Horse',
+          'Tiger',
+          'Rabbit',
+          'Elephant',
+        ],
+      },
+      {
+        'questionText': "What's your favorite instructor?",
+        'answers': [
+          'Max',
+          'Mosh',
+          'Krish',
+          'Caleb',
+          'Navin',
+        ],
+      },
     ];
     return MaterialApp(
       home: Scaffold(
@@ -41,7 +65,7 @@ class _BasicAppState extends State<BasicApp> {
         ),
         body: Column(
           children: [
-            Question(questionText: questions[_questionIndex]),
+            Question(questionText: questions[_questionIndex]['questionText']),
             Answer(_answerQuestion),
             Answer(_answerQuestion),
             Answer(_answerQuestion),
