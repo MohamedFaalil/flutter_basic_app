@@ -20,9 +20,8 @@ class Quiz extends StatelessWidget {
         ),
         ...(_questions[_questionIndex]['answers'] as List<Map<String, Object>>)
             .map((each) {
-          var answer = (each as Map);
-          return Answer(
-              _answerQuestion, answer['text'], answer['score'].toDouble());
+          return Answer(_answerQuestion, (each['text'] as String),
+              (each['score'] as double));
         }).toList(),
       ],
     );

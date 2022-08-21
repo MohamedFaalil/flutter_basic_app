@@ -12,12 +12,10 @@ class BasicApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //const is compile time constant, and final is run time constant
-    // variable questions can not be modified
-
 /*
  Following operation can not be done:
-  01) numberText variable can be modified/changed by assigning new value
+  01) numberText variable can not be changed by assigning new value
+    var numberText = ['one'];
     i.e numberText = ["one", "two"];
   02) But its existing value can not be modified
     // var numberText = const ['one'];

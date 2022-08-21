@@ -14,6 +14,8 @@ class _QuizCollectionState extends State<QuizCollection> {
   //here _questions variable can be initialized with a value only one time
   // also its value can not be modified too due to const key
   final _questions = const [
+    //const is compile time constant, and final is run time constant
+    // variable questions can not be modified
     {
       'questionText': "What's your favorite color?",
       'answers': [
@@ -88,10 +90,10 @@ class _QuizCollectionState extends State<QuizCollection> {
   ];
   var _questionIndex = 0;
   double _totalScore = 0.0;
-  void _answerQuestion(double selected_answers_score) {
+  void _answerQuestion(double selectedAnswerScore) {
     setState(() {
       _questionIndex += 1;
-      _totalScore += selected_answers_score;
+      _totalScore += selectedAnswerScore;
     });
   }
 
