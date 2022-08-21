@@ -24,6 +24,7 @@ class BasicApp extends StatelessWidget {
     // numberText.add("Two");
 */
     return MaterialApp(
+      title: "Basic App",
       home: Scaffold(
         appBar: AppBar(
           title: const Text('This is my first app'),
